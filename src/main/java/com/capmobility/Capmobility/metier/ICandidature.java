@@ -16,4 +16,7 @@ public interface ICandidature {
 	
 	public void deleteCandidatureById(Long id);
 
+	
+	public List<Candidature> getListUtilisateurs();
+	public String ajouterCandidature (Candidature candidature);
 }
