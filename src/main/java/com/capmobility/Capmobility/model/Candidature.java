@@ -26,7 +26,7 @@ public class Candidature implements Serializable {
 	private String situtationFamillial;
 	private Boolean enfants;
 	private int etatValidation;
-   
+
 	// Relation avec utilisateur
 	@ManyToOne
 	private Utilisateur user;
@@ -142,10 +142,11 @@ public class Candidature implements Serializable {
 	}
 
 	// Constructeur parametré
-	public Candidature(String projet, Date dateIntegrationProjet, int ced, String potentielCed, String motivation,
-			String ville1, String ville2, String ville3, String situtationFamillial, Boolean enfants,
+	public Candidature(Long id, String projet, Date dateIntegrationProjet, int ced, String potentielCed,
+			String motivation, String ville1, String ville2, String ville3, String situtationFamillial, Boolean enfants,
 			int etatValidation, Utilisateur user) {
 		super();
+		this.id = id;
 		this.projet = projet;
 		this.dateIntegrationProjet = dateIntegrationProjet;
 		this.ced = ced;
