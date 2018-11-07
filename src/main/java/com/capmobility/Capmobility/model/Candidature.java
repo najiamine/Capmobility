@@ -4,10 +4,15 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import org.springframework.context.annotation.Lazy;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //La classe candidature 
 @Entity
@@ -28,6 +33,7 @@ public class Candidature implements Serializable {
 	private int etatValidation;
 
 	// Relation avec utilisateur
+	
 	@ManyToOne
 	private Utilisateur user;
 
@@ -126,7 +132,7 @@ public class Candidature implements Serializable {
 	public void setEtatValidation(int etatValidation) {
 		this.etatValidation = etatValidation;
 	}
-
+    @JsonIgnore
 	public Utilisateur getUser() {
 		return user;
 	}

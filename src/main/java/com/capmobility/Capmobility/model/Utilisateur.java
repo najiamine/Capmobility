@@ -37,7 +37,7 @@ public class Utilisateur implements Serializable {
 	private String grade;
 	private String sexe;
 	private String villeTravail;
-	private String role;
+	//private String role;
 	// Relation Candidature
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Candidature> candidatures;
@@ -165,13 +165,13 @@ public class Utilisateur implements Serializable {
 		this.villeTravail = villeTravail;
 	}
 
-	public String getRole() {
-		return role;
-	}
+//	public String getRole() {
+//		return role;
+//	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
+//	public void setRole(String role) {
+//		this.role = role;
+//	}
 
 	public List<Candidature> getCandidatures() {
 		return candidatures;
@@ -187,12 +187,10 @@ public class Utilisateur implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	// Constructeur parametré
-	public Utilisateur(Long id ,Long matricule, String nom, String prenom, String login, String password, String gmail,
+	public Utilisateur(Long matricule, String nom, String prenom, String login, String password, String gmail,
 			Date dateIntegrationCap, String telephone, String adresse, String profil, String technologie, String grade,
-			String sexe, String villeTravail, String role, List<Candidature> candidatures) {
+			String sexe, String villeTravail, List<Candidature> candidatures, Collection<AppRole> roles) {
 		super();
-		this.id = id ;
 		this.matricule = matricule;
 		this.nom = nom;
 		this.prenom = prenom;
@@ -207,8 +205,11 @@ public class Utilisateur implements Serializable {
 		this.grade = grade;
 		this.sexe = sexe;
 		this.villeTravail = villeTravail;
-		this.role = role;
 		this.candidatures = candidatures;
+		this.roles = roles;
 	}
+
+	// Constructeur parametré
+	
 
 }
