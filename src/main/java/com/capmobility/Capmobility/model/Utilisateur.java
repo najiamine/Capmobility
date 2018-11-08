@@ -16,17 +16,21 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 // Classe Utilisateur
 @Entity
 public class Utilisateur implements Serializable {
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private Long matricule;
 	private String nom;
 	private String prenom;
-	@Column(unique=true)
-	private String login;
+	@Column(unique = true)
+	private String username;
 	private String password;
 	private String gmail;
 	private Date dateIntegrationCap;
@@ -37,13 +41,12 @@ public class Utilisateur implements Serializable {
 	private String grade;
 	private String sexe;
 	private String villeTravail;
-	private String role;
 	// Relation Candidature
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Candidature> candidatures;
 	// Relation Role
-	@ManyToMany(fetch=FetchType.EAGER)
-	private Collection<AppRole> roles =new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	private Collection<AppRole> roles = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -77,14 +80,16 @@ public class Utilisateur implements Serializable {
 		this.prenom = prenom;
 	}
 
-	public String getLogin() {
-		return login;
+
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
-
+   
 	public String getPassword() {
 		return password;
 	}
@@ -165,14 +170,6 @@ public class Utilisateur implements Serializable {
 		this.villeTravail = villeTravail;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
 	public List<Candidature> getCandidatures() {
 		return candidatures;
 	}
@@ -181,22 +178,29 @@ public class Utilisateur implements Serializable {
 		this.candidatures = candidatures;
 	}
 
+	public Collection<AppRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<AppRole> roles) {
+		this.roles = roles;
+	}
+
 	// Constructeur par defaut
 	public Utilisateur() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 	// Constructeur parametré
-	public Utilisateur(Long id ,Long matricule, String nom, String prenom, String login, String password, String gmail,
-			Date dateIntegrationCap, String telephone, String adresse, String profil, String technologie, String grade,
-			String sexe, String villeTravail, String role, List<Candidature> candidatures) {
+	public Utilisateur(Long id, Long matricule, String nom, String prenom, String username, String password,
+			String gmail, Date dateIntegrationCap, String telephone, String adresse, String profil, String technologie,
+			String grade, String sexe, String villeTravail, List<Candidature> candidatures, Collection<AppRole> roles) {
 		super();
-		this.id = id ;
+		this.id = id;
 		this.matricule = matricule;
 		this.nom = nom;
 		this.prenom = prenom;
-		this.login = login;
+		this.username = username;
 		this.password = password;
 		this.gmail = gmail;
 		this.dateIntegrationCap = dateIntegrationCap;
@@ -207,8 +211,10 @@ public class Utilisateur implements Serializable {
 		this.grade = grade;
 		this.sexe = sexe;
 		this.villeTravail = villeTravail;
-		this.role = role;
 		this.candidatures = candidatures;
+		this.roles = roles;
 	}
 
+	
+	
 }

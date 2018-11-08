@@ -19,7 +19,7 @@ import com.capmobility.Capmobility.Exception.UtilisateurNotfoundException;
 import com.capmobility.Capmobility.metier.IUtilisateur;
 import com.capmobility.Capmobility.model.Utilisateur;
 
-@RequestMapping("/Utilisateur")
+
 @RestController
 public class UtilisateurService {
 
@@ -27,7 +27,7 @@ public class UtilisateurService {
 	private IUtilisateur iUtilisateur;
 
 	// Ajouter un utilisateur
-	@PostMapping("/ajouterUtilisateur")
+	@PostMapping("/utilisateurs")
 	public String addUtilisateur(@RequestBody Utilisateur utilisateur) {
 
 		try {
@@ -43,7 +43,7 @@ public class UtilisateurService {
 	}
 
 	// Recupérer la liste des utilisateurs
-	@GetMapping("/GetUtilisateurs")
+	@GetMapping("/utilisateurs")
 	public List<Utilisateur> getAllUtilisateur() {
 
 		List<Utilisateur> utilisateurs = new ArrayList<Utilisateur>();
@@ -58,7 +58,7 @@ public class UtilisateurService {
 	}
 
 	// Rechercher un utilisateur par id
-	@GetMapping("/FindUtilisateur/{id}")
+	@GetMapping("/utilisateurs/{id}")
 	public Utilisateur getUtilisateurById(@PathVariable Long id) {
 
 		Utilisateur utilisateur = null;
@@ -72,7 +72,7 @@ public class UtilisateurService {
 	}
 
 	// Rechercher un utilisateur par matricule
-	@GetMapping("/FindUtilisateurByMatricule/{matricule}")
+	@GetMapping("/utilisateur/{matricule}")
 	public Utilisateur getUtilisateurByMatricule(@PathVariable Long matricule) {
 		Utilisateur utilisateur = null;
 		try {
@@ -85,7 +85,7 @@ public class UtilisateurService {
 	}
 
 	// Modifier un utilisateur
-	@PutMapping("/UpdateUtilisateurs")
+	@PutMapping("/utilisateurs")
 	public String updateUtilisateur(@RequestBody Utilisateur utilisateur) {
 
 		try {
@@ -102,7 +102,7 @@ public class UtilisateurService {
 	}
 
 	// Supprimer un utilisateur
-	@DeleteMapping("/DeleteUtilisateur/{id}")
+	@DeleteMapping("/utilisateur/{id}")
 	public String deleteUtilisateurById(@PathVariable Long id) {
 		try {
 			iUtilisateur.deleteUtilisateurById(id);
