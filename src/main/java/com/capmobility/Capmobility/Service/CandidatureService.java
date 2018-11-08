@@ -3,6 +3,8 @@ package com.capmobility.Capmobility.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capmobility.Capmobility.Email.SmtpMailSender;
 import com.capmobility.Capmobility.Exception.CandidatureNotfoundException;
 import com.capmobility.Capmobility.Exception.ListCandidatureVideException;
 import com.capmobility.Capmobility.metier.ICandidature;
@@ -22,6 +25,9 @@ public class CandidatureService {
 
 	@Autowired
 	private ICandidature iCandidature;
+	
+	@Autowired
+	private SmtpMailSender smtpMailSender;
 
 	// ajouter une candidature;
 	@RequestMapping(value = "/candidatures", method = RequestMethod.POST)
@@ -76,7 +82,7 @@ public class CandidatureService {
 
 	// modifier une candidature
 	@RequestMapping(value = "/candidatures", method = RequestMethod.PUT)
-	public String updateCandidature(@RequestBody Candidature candidature) {
+	public String updateCandidature(@RequestBody Candidature candidature) throws MessagingException {
 		try {
 			iCandidature.updateCandidature(candidature);
 		} catch (CandidatureNotfoundException e) {
@@ -84,7 +90,12 @@ public class CandidatureService {
 			e.getMessage();
 			return "Candidature inexistante Merci de verifier le numero de candidature";
 		}
-		return "Votre candidature est modifié";
+//		if(!admin)
+//			return "Votre candidature est modifié";
+//		else {
+			smtpMailSender.send("abdou.bouchra93@gmail.com", "test mailing CapMobility", "Body");
+			return "la condidature est modifié, Un Message envoyé.";
+//	}
 	}
 
 	// recuperer la liste des candidatures par etat (0 = en cours, 1 = validé, 2 =
