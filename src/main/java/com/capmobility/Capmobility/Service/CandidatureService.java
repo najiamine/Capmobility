@@ -34,16 +34,11 @@ public class CandidatureService {
 
 	// ajouter une candidature;
 	@RequestMapping(value = "/candidatures", method = RequestMethod.POST)
-//	@PostMapping("/candidatures")
 	public String addCandidature(@RequestBody Candidature candidature) {
 
 		return iCandidature.ajouterCandidature(candidature);
 	}
-	@PostMapping("/savecandidatures")
-	public Candidature saveCandidature(@RequestBody Candidature candidature) {
 
-		return candidaturerepository.save(candidature);
-		}
 		
 	// recuperer toutes les condidatures
 	@RequestMapping(value = "/candidatures", method = RequestMethod.GET)
