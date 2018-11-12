@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.capmobility.Capmobility.Email.SmtpMailSender;
 import com.capmobility.Capmobility.Exception.CandidatureNotfoundException;
 import com.capmobility.Capmobility.Exception.ListCandidatureVideException;
+import com.capmobility.Capmobility.Repository.CandidatureRepository;
 import com.capmobility.Capmobility.metier.ICandidature;
 
 import com.capmobility.Capmobility.model.Candidature;
@@ -28,6 +29,8 @@ public class CandidatureService {
 	
 	@Autowired
 	private SmtpMailSender smtpMailSender;
+	@Autowired
+	private CandidatureRepository candidaturerepository ;
 
 	// ajouter une candidature;
 	@RequestMapping(value = "/candidatures", method = RequestMethod.POST)
@@ -36,7 +39,12 @@ public class CandidatureService {
 
 		return iCandidature.ajouterCandidature(candidature);
 	}
+	@PostMapping("/savecandidatures")
+	public Candidature saveCandidature(@RequestBody Candidature candidature) {
 
+		return candidaturerepository.save(candidature);
+		}
+		
 	// recuperer toutes les condidatures
 	@RequestMapping(value = "/candidatures", method = RequestMethod.GET)
 	public List<Candidature> getAllCandidature() {
