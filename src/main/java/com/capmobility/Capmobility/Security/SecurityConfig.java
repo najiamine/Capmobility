@@ -51,7 +51,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		//En cas d'utilisation du filter JWT on aura pas besoin d'utiliser la page D'authentification
 		//http.formLogin();
 	    //	loginPage("/login"); Afin de personnaliser la page Login 
-		http.authorizeRequests().antMatchers("/login/**","/register/**").permitAll();
+		http.authorizeRequests().antMatchers("/login/**","/register/**","/saveUtilisateur/**").permitAll();
 		http.authorizeRequests().antMatchers(HttpMethod.GET,"/utilisateurs/**").hasAuthority("ADMIN");
 		http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(new JWTAuthenticationFilter(authenticationManager()));

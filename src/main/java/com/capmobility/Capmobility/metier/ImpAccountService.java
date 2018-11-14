@@ -49,4 +49,10 @@ public class ImpAccountService implements IAccountService {
 		return utilisateurRepository.findByUsername(username);
 	}
 
+	@Override
+	public Utilisateur findUtilisateurByMatricule(Long matricule) {
+	
+		return utilisateurRepository.findUtilisateurByMatricule(matricule);
+	}
+
 }

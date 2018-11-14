@@ -18,7 +18,7 @@ public interface IUtilisateur {
 
 	public Utilisateur getUtilisateurById(Long id) throws UtilisateurNotfoundException;
 
-	public String updateUtilisateur(Utilisateur utilisateur)throws UtilisateurNotfoundException;
+	public Utilisateur updateUtilisateur(Utilisateur utilisateur)throws UtilisateurNotfoundException;
 	
 	public Utilisateur getUtilisateurByMatricule(Long matricule) throws UtilisateurNotfoundException;
 	

@@ -81,7 +81,7 @@ public class ImpUtilisateur implements IUtilisateur {
 
 	// Modifier Un Utilisateur
 	@Override
-	public String updateUtilisateur(Utilisateur utilisateur) throws UtilisateurNotfoundException {
+	public Utilisateur updateUtilisateur(Utilisateur utilisateur) throws UtilisateurNotfoundException {
 
 		Optional<Utilisateur> utilisateur1 = utilisateurRepository.findById(utilisateur.getId());
 
@@ -91,8 +91,7 @@ public class ImpUtilisateur implements IUtilisateur {
 		} else {
 			Utilisateur utilisateur2 = utilisateurRepository.save(utilisateur);
 
-			return "L'Utilisateur  -NOM: " + utilisateur.getNom() + " -ID: " + utilisateur.getId()
-					+ " est bien modifié";
+			return utilisateur2;
 		}
 
 	}

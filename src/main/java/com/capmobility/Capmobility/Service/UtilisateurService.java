@@ -86,19 +86,20 @@ public class UtilisateurService {
 
 	// Modifier un utilisateur
 	@PutMapping("/utilisateurs")
-	public String updateUtilisateur(@RequestBody Utilisateur utilisateur) {
-
+	public Utilisateur updateUtilisateur(@RequestBody Utilisateur utilisateur) {
+		Utilisateur utilisateur1 = null;
 		try {
-			iUtilisateur.updateUtilisateur(utilisateur);
+			utilisateur1=iUtilisateur.updateUtilisateur(utilisateur);
 
 		} catch (UtilisateurNotfoundException e) {
 
 			System.out.println(e.getMessage());
-			return "L'utilisateur -NOM: " + utilisateur.getNom() + " -MATRICULE: " + utilisateur.getMatricule()
-					+ " s'aisie n'existe pas , veuillez inserer un nouveau MATRICULE";
+//			return "L'utilisateur -NOM: " + utilisateur.getNom() + " -MATRICULE: " + utilisateur.getMatricule()
+//					+ " s'aisie n'existe pas , veuillez inserer un nouveau MATRICULE";
 		}
-		return "L'Utilisateur  -NOM: " + utilisateur.getNom() + " -MATRICULE: " + utilisateur.getMatricule()
-				+ " est bien modifié";
+//		return "L'Utilisateur  -NOM: " + utilisateur.getNom() + " -MATRICULE: " + utilisateur.getMatricule()
+//				+ " est bien modifié";
+		return utilisateur1 ;
 	}
 
 	// Supprimer un utilisateur

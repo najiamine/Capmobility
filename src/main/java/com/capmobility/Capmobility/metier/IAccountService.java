@@ -8,4 +8,5 @@ public Utilisateur saveUser(Utilisateur utilisateur );
 public AppRole saveRole (AppRole role);
 public void addRoleToUser(String username ,String roleName);
 public Utilisateur findUtilisateurByUsername(String username);
+public Utilisateur findUtilisateurByMatricule(Long matricule);
 }
